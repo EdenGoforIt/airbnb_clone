@@ -91,6 +91,7 @@ const Modal: React.FC<ModalProps> = ({
               </button>
               <div className="text-xl font-bold">{title}</div>
             </div>
+            <hr className="border-neutral-150" />
             {/* Body */}
             <div className="relative p-6 flex-auto">{body}</div>
             {/* Footer */}
