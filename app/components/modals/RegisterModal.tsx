@@ -15,6 +15,7 @@ const RegisterModal = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors }
@@ -25,6 +26,11 @@ const RegisterModal = () => {
       password: ''
     }
   });
+
+  const handleClose = () => {
+    reset();
+    registerModal.onClose();
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -39,6 +45,7 @@ const RegisterModal = () => {
       })
       .finally(() => {
         setIsLoading(false);
+        reset();
       });
   };
 
@@ -54,8 +61,16 @@ const RegisterModal = () => {
         required
       />
       <Input
+        id="name"
+        label="Name"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
         id="password"
-        label="password"
+        label="Password"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -71,7 +86,7 @@ const RegisterModal = () => {
       title="Register"
       actionLabel="Continue"
       body={bodyContent}
-      onClose={registerModal.onClose}
+      onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
     />
   );
