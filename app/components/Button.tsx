@@ -9,6 +9,7 @@ interface ButtonProps {
   outline?: boolean;
   small?: boolean;
   icon?: IconType;
+  wrapperClass?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,7 +19,8 @@ const Button: React.FC<ButtonProps> = ({
   outline,
   small,
   // alias name
-  icon: Icon
+  icon: Icon,
+  wrapperClass
 }) => {
   return (
     <button
@@ -29,12 +31,13 @@ const Button: React.FC<ButtonProps> = ({
                 py-2
                 w-full
                 ${outline ? 'bg-white' : 'bg-rose-500'}
-                ${outline ? 'border-black' : 'border-rose-500'}
+                ${outline ? 'border-neutral-200' : 'border-rose-500'}
                 ${outline ? 'text-black' : 'text-white'}
                 ${small ? 'py-1' : 'py3'}
                 ${small ? 'text-sm' : 'text-md'}
                 ${small ? 'font-light' : 'font-semibold'}
                 ${small ? 'border-[1px]' : 'border-2'}
+                ${wrapperClass}
   `}
     >
       {Icon && <Icon size={24} className="absolute left-4 top-3" />}

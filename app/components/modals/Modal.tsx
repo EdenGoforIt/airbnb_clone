@@ -111,6 +111,7 @@ const Modal: React.FC<ModalProps> = ({
                 />
               </div>
             </div>
+            <div className="flex flex-col">{footer}</div>
           </div>
         </div>
       </div>

@@ -9,6 +9,8 @@ import axios from 'axios';
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../inputs/Input';
+import toast from 'react-hot-toast';
+import Button from '../Button';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -41,7 +43,7 @@ const RegisterModal = () => {
         registerModal.onClose();
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -79,6 +81,32 @@ const RegisterModal = () => {
     </div>
   );
 
+  const footerContent = (
+    <div className="flex flex-col ga-4 mt-1">
+      <Button
+        outline
+        label="Continue with Google"
+        icon={FcGoogle}
+        onClick={() => {}}
+        wrapperClass="mb-1"
+      />
+      <Button
+        outline
+        label="Continue with Github"
+        icon={AiFillGithub}
+        onClick={() => {}}
+      />
+      <div className="flex flex-row justify-center items-center gap-2 text-neutral-600 mt-3">
+        <div>Already have an account?</div>
+        <div
+          className="text-neutral-800 cursor-pointer hover:underline"
+          onClick={registerModal.onClose}
+        >
+          Log in
+        </div>
+      </div>
+    </div>
+  );
   return (
     <Modal
       disabled={isLoading}
@@ -86,6 +114,7 @@ const RegisterModal = () => {
       title="Register"
       actionLabel="Continue"
       body={bodyContent}
+      footer={footerContent}
       onClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
     />
