@@ -3,6 +3,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 Create a `.env` file and add a `DATABASE_URL` with a mongodb connection
+[cluster name can be different]
+`DATABASE_URL="mongodb+srv://[id]:[password]@cluster0.eoitbl0.mongodb.net/[db]"`
 
 First, run the development server:
 
