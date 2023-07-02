@@ -1,8 +1,9 @@
 'use client';
 
 import useLoginModal from '@/app/hooks/useLoginModal';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
 import axios from 'axios';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
@@ -14,6 +15,7 @@ import Modal from './Modal';
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -37,7 +39,7 @@ const LoginModal = () => {
     setIsLoading(true);
 
     axios
-      .post('/api/register', data)
+      .post('/api/login', data)
       .then(() => {
         loginModal.onClose();
       })
@@ -49,6 +51,10 @@ const LoginModal = () => {
         reset();
       });
   };
+  const onToggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal])
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -79,23 +85,27 @@ const LoginModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => { }}
         wrapperClass="mb-1"
       />
       <Button
         outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => { }}
       />
-      <div className="flex flex-row justify-center items-center gap-2 text-neutral-600 mt-3">
-        <div>Already have an account?</div>
-        <div
-          className="text-neutral-800 cursor-pointer hover:underline"
-          onClick={loginModal.onClose}
-        >
-          Log in
-        </div>
+      <div className="
+      text-neutral-500 text-center mt-4 font-light">
+        <p>First time using Airbnb?
+          <span
+            onClick={onToggle}
+            className="
+              text-neutral-800
+              cursor-pointer 
+              hover:underline
+            "
+          > Create an account</span>
+        </p>
       </div>
     </div>
   );
