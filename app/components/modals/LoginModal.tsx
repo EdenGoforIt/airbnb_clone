@@ -2,7 +2,8 @@
 
 import useLoginModal from '@/app/hooks/useLoginModal';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
-import axios from 'axios';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -14,6 +15,7 @@ import Input from '../inputs/Input';
 import Modal from './Modal';
 
 const LoginModal = () => {
+  const router = useRouter();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -36,19 +38,25 @@ const LoginModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+
     setIsLoading(true);
 
-    axios
-      .post('/api/login', data)
-      .then(() => {
-        loginModal.onClose();
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      })
-      .finally(() => {
+    signIn('credentials', {
+      ...data,
+      redirect: false,
+    })
+      .then((callback) => {
         setIsLoading(false);
-        reset();
+
+        if (callback?.ok) {
+          toast.success('Logged in');
+          router.refresh();
+          loginModal.onClose();
+        }
+
+        if (callback?.error) {
+          toast.error(callback.error);
+        }
       });
   };
   const onToggle = useCallback(() => {

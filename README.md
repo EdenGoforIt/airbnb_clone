@@ -6,6 +6,9 @@ Create a `.env` file and add a `DATABASE_URL` with a mongodb connection
 [cluster name can be different]
 `DATABASE_URL="mongodb+srv://[id]:[password]@cluster0.eoitbl0.mongodb.net/[db]"`
 
+if locally
+`DATABASE_URL="mongodb://localhost:27017/local?authSource=admin&retryWrites=false"`
+
 First, run the development server:
 
 ```bash
@@ -25,6 +28,14 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## install mongodb locally
+- [Install mongodb locally](https://www.prisma.io/dataguide/mongodb/setting-up-a-local-mongodb-database)
+
+## push prisma db
+`npx prisma db push`
+
+
 
 ## Learn More
 
