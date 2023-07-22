@@ -6,6 +6,8 @@ import Navbar from './components/navbar/Navbar';
 import './globals.css';
 import ToasterProvider from './providers/ToasterProvider';
 import getCurrentUser from './actions/getCurrentUser';
+import Loading from './loading';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Air BnB',
@@ -32,7 +34,11 @@ export default async function RootLayout({
           <RegisterModal />
           <LoginModal />
         </ClientOnly>
-        {children}
+        <Suspense fallback={<Loading />}>
+          <div className='pb-20 pt-28'>
+            {children}
+          </div>
+        </Suspense>
       </body>
     </html>
   );
