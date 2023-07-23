@@ -6,7 +6,6 @@ interface AvartarProps {
 }
 
 const Avatar: React.FC<AvartarProps> = ({ src }) => {
-  console.log("🚀 ~ file: Avatar.tsx:9 ~ src:", src)
   return (
     <Image
       alt="avatar"
