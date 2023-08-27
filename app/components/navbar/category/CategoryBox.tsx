@@ -15,6 +15,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({ icon: Icon, label, selected }
 
   const handleClick = useCallback(() => {
     let currentQuery = {};
+    const test = '';
     if (params) {
       currentQuery = qs.parse(params.toString());
       const updatedQuery: any = {
