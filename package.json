@@ -12,7 +12,7 @@
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "npx prettier --write",
-      "npx eslint --fix"
+      "npm run lint"
     ]
   },
   "dependencies": {
