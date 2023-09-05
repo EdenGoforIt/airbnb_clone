@@ -1,10 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Run image in the docker container in lcoal host
+
 `docker-compose up -d` detached mode in the background
 `docker logs mongo` check if running
 now you can check in the .env if the connection is right such as `mongodb://localhost:27017`
-
 
 ## Getting Started
 
@@ -36,17 +36,18 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## install mongodb locally
+
 - [Install mongodb locally](https://www.prisma.io/dataguide/mongodb/setting-up-a-local-mongodb-database)
 - `DATABASE_URL="mongodb+srv://[username]:[password]@[address]/myVirtualDatabase"`
 
 ## push prisma db
+
 `npx prisma db push`
 
-
 ## known errors
-- mongodb needs replica to work with but locally, mongodb doesn't do the transaction. There is a workaround. 
-- 
 
+- mongodb needs replica to work with but locally, mongodb doesn't do the transaction. There is a workaround.
+-
 
 ## Learn More
 

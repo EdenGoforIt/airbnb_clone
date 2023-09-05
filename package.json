@@ -7,12 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "prettier:fix": "prettier --write .",
+    "lint:fix": "",
     "prepare": "husky install"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "npx prettier --write",
-      "npm run lint"
+      "npm run prettier:fix",
+      "npm run lint:fix"
     ]
   },
   "dependencies": {

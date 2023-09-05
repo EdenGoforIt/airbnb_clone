@@ -1,15 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
+    appDir: true
   },
   images: {
-    domains: [
-      "avatars.githubusercontent.com",
-      'avatars.githubusercontent.com',
-      'lh3.googleusercontent.com'
-    ]
+    domains: ['avatars.githubusercontent.com', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com']
   }
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -26,7 +26,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={() => { }}
+          onClick={() => {}}
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
           Airbnb your home
@@ -46,24 +46,24 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem label="My Trips" onClick={() => { }} />
-                <MenuItem label="My Favorites" onClick={() => { }} />
-                <MenuItem label="My Reservations" onClick={() => { }} />
-                <MenuItem label="My Properties" onClick={() => { }} />
-                <MenuItem label="Airbnb My Home" onClick={() => { }} />
+                <MenuItem label="My Trips" onClick={() => {}} />
+                <MenuItem label="My Favorites" onClick={() => {}} />
+                <MenuItem label="My Reservations" onClick={() => {}} />
+                <MenuItem label="My Properties" onClick={() => {}} />
+                <MenuItem label="Airbnb My Home" onClick={() => {}} />
                 <hr />
                 <MenuItem label="Logout" onClick={() => signOut()} />
               </>
-            ) : (<>
-              <MenuItem label="Login" onClick={loginModal.onOpen} />
-              <MenuItem label="Sign up" onClick={registerModal.onOpen} />
-            </>)}
-
+            ) : (
+              <>
+                <MenuItem label="Login" onClick={loginModal.onOpen} />
+                <MenuItem label="Sign up" onClick={registerModal.onOpen} />
+              </>
+            )}
           </div>
         </div>
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 };
 

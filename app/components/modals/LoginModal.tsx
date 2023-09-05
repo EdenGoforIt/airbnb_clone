@@ -38,43 +38,34 @@ const LoginModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-
     setIsLoading(true);
 
     signIn('credentials', {
       ...data,
-      redirect: false,
-    })
-      .then((callback) => {
-        setIsLoading(false);
+      redirect: false
+    }).then((callback) => {
+      setIsLoading(false);
 
-        if (callback?.ok) {
-          toast.success('Logged in');
-          router.refresh();
-          loginModal.onClose();
-        }
+      if (callback?.ok) {
+        toast.success('Logged in');
+        router.refresh();
+        loginModal.onClose();
+      }
 
-        if (callback?.error) {
-          toast.error(callback.error);
-        }
-      });
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
   };
   const onToggle = useCallback(() => {
     loginModal.onClose();
     registerModal.onOpen();
-  }, [loginModal, registerModal])
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subtitle="Login to your account" center />
-      <Input
-        id="email"
-        label="Email"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-      />
+      <Input id="email" label="Email" disabled={isLoading} register={register} errors={errors} required />
       <Input
         id="password"
         label="Password"
@@ -96,15 +87,13 @@ const LoginModal = () => {
         onClick={() => signIn('google')}
         wrapperClass="mb-1"
       />
-      <Button
-        outline
-        label="Continue with Github"
-        icon={AiFillGithub}
-        onClick={() => signIn('github')}
-      />
-      <div className="
-      text-neutral-500 text-center mt-4 font-light">
-        <p>First time using Airbnb?
+      <Button outline label="Continue with Github" icon={AiFillGithub} onClick={() => signIn('github')} />
+      <div
+        className="
+      text-neutral-500 text-center mt-4 font-light"
+      >
+        <p>
+          First time using Airbnb?
           <span
             onClick={onToggle}
             className="
@@ -112,7 +101,10 @@ const LoginModal = () => {
               cursor-pointer 
               hover:underline
             "
-          > Create an account</span>
+          >
+            {' '}
+            Create an account
+          </span>
         </p>
       </div>
     </div>
