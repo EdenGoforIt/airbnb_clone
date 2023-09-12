@@ -8,7 +8,6 @@ import CategoryBox from './CategoryBox';
 const Categories = () => {
   const params = useSearchParams();
   const category = params?.get('category');
-  console.log('🚀 ~ file: Categories.tsx:11 ~ Categories ~ category:', category);
   const pathName = usePathname();
   const isMainPage = pathName === '/';
 
