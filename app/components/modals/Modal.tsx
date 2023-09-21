@@ -95,7 +95,7 @@ const Modal: React.FC<ModalProps> = ({
                 {secondaryAction && secondaryActionLabel && (
                   <Button disabled={disabled} label={secondaryActionLabel} onClick={secondaryAction}></Button>
                 )}
-                <Button disabled={disabled} label={actionLabel} onClick={handleSubmit} />
+                <Button disabled={disabled} label={actionLabel} onClick={handleSecondaryAction} />
               </div>
             </div>
             <div className="flex flex-col">{footer}</div>

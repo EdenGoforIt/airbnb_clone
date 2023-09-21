@@ -1,14 +1,14 @@
 import { Nunito } from 'next/font/google';
+import { Suspense } from 'react';
+import getCurrentUser from './actions/getCurrentUser';
 import ClientOnly from './components/ClientOnly';
 import LoginModal from './components/modals/LoginModal';
 import RegisterModal from './components/modals/RegisterModal';
+import RentModal from './components/modals/RentModal';
 import Navbar from './components/navbar/Navbar';
 import './globals.css';
-import ToasterProvider from './providers/ToasterProvider';
-import getCurrentUser from './actions/getCurrentUser';
 import Loading from './loading';
-import { Suspense } from 'react';
-import RentModal from './components/modals/RentModal';
+import ToasterProvider from './providers/ToasterProvider';
 
 export const metadata = {
   title: 'Air BnB',
