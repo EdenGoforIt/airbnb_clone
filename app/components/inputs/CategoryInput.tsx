@@ -10,8 +10,17 @@ interface CategoryInputPrpos {
   onClick: (value: string) => void;
 }
 
-const CategoryInput: React.FC<CategoryInputPrpos> = ({ icon, label, selected, onClick }) => {
-  return <div onClick={() => onClick(label)}>{label}</div>;
+const CategoryInput: React.FC<CategoryInputPrpos> = ({ icon: Icon, label, selected, onClick }) => {
+  return (
+    <div
+      className={`rounded-xl border-2 p-4 flex flex-col gap-3 hover:border-black transition cursor-pointer 
+      ${selected ? 'border-black' : 'border-neutral-200'}`}
+      onClick={() => onClick(label)}
+    >
+      <Icon size={20} />
+      <div className="font-semibold">{label}</div>
+    </div>
+  );
 };
 
 export default CategoryInput;

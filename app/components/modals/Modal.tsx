@@ -7,7 +7,7 @@ import Button from '../Button';
 interface ModalProps {
   isOpen?: boolean;
   onClose: () => void;
-  onSubmit: () => {};
+  onSubmit: () => void;
   title?: string;
   body?: React.ReactElement;
   footer?: React.ReactElement;
@@ -95,7 +95,7 @@ const Modal: React.FC<ModalProps> = ({
                 {secondaryAction && secondaryActionLabel && (
                   <Button disabled={disabled} label={secondaryActionLabel} onClick={secondaryAction}></Button>
                 )}
-                <Button disabled={disabled} label={actionLabel} onClick={handleSecondaryAction} />
+                <Button disabled={disabled} label={actionLabel} onClick={handleSubmit} />
               </div>
             </div>
             <div className="flex flex-col">{footer}</div>
