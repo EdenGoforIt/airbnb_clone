@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Run image in the docker container in lcoal host
 
 `docker-compose up -d` detached mode in the background
-`docker logs mongo` check if running
+`docker logs mongo` check if running 
 now you can check in the .env if the connection is right such as `mongodb://localhost:27017`
 
 ## Getting Started
