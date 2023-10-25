@@ -1,15 +1,17 @@
 'use client';
 
-import { categories } from '@/app/data-provider/categories';
 import { usePathname, useSearchParams } from 'next/navigation';
-import Container from '../../Container';
 import CategoryBox from './CategoryBox';
+
+import { categories } from '@/app/data-provider/categories';
+import Container from '../../Container';
+
 
 const Categories = () => {
   const params = useSearchParams();
   const category = params?.get('category');
-  const pathName = usePathname();
-  const isMainPage = pathName === '/';
+  const pathname = usePathname();
+  const isMainPage = pathname === '/';
 
   if (!isMainPage) {
     return null;
@@ -19,15 +21,16 @@ const Categories = () => {
     <Container>
       <div
         className="
-        pt-4
-        flex
-        flex-row
-        items-center
-        justify-between
-        overflow-x-auto"
+          pt-4
+          flex 
+          flex-row 
+          items-center 
+          justify-between
+          overflow-x-autoÂ
+        "
       >
         {categories.map((item) => (
-          <CategoryBox key={item.label} icon={item.icon} label={item.label} selected={category === item.label} />
+          <CategoryBox key={item.label} label={item.label} icon={item.icon} selected={category === item.label} />
         ))}
       </div>
     </Container>

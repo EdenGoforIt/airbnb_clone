@@ -1,18 +1,19 @@
 import { Nunito } from 'next/font/google';
-import { Suspense } from 'react';
-import getCurrentUser from './actions/getCurrentUser';
-import ClientOnly from './components/ClientOnly';
-import LoginModal from './components/modals/LoginModal';
-import RegisterModal from './components/modals/RegisterModal';
-import RentModal from './components/modals/RentModal';
-import Navbar from './components/navbar/Navbar';
+
+import Navbar from '@/app/components/navbar/Navbar';
+import LoginModal from '@/app/components/modals/LoginModal';
+import RegisterModal from '@/app/components/modals/RegisterModal';
+import RentModal from '@/app/components/modals/RentModal';
+
+import ToasterProvider from '@/app/providers/ToasterProvider';
+
 import './globals.css';
-import Loading from './loading';
-import ToasterProvider from './providers/ToasterProvider';
+import ClientOnly from './components/ClientOnly';
+import getCurrentUser from './actions/getCurrentUser';
 
 export const metadata = {
-  title: 'Air BnB',
-  description: 'Air Bnb Created By Eden'
+  title: 'Airbnb',
+  description: 'Airbnb Clone'
 };
 
 const font = Nunito({
@@ -27,14 +28,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />
-          <Navbar currentUser={currentUser} />
-          <RegisterModal />
           <LoginModal />
+          <RegisterModal />
           <RentModal />
+          <Navbar currentUser={currentUser} />
         </ClientOnly>
-        <Suspense fallback={<Loading />}>
-          <div className="pb-20 pt-28">{children}</div>
-        </Suspense>
+        <div className="pb-20 pt-44">{children}</div>
       </body>
     </html>
   );
