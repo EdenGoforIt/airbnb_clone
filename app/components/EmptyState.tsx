@@ -7,7 +7,7 @@ import Heading from './Heading';
 
 interface EmptyStateProps {
   title?: string;
-  subTitle: string;
+  subTitle?: string;
   showReset?: boolean;
 }
 
