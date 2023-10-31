@@ -2,7 +2,7 @@ import useCountries from '@/app/hooks/useCountry';
 import { SafeUser } from '@/app/types';
 import { Listing, Reservation } from '@prisma/client';
 import { useRouter } from 'next/navigation';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 interface ListingCardProps {
   data: Listing;
@@ -28,8 +28,26 @@ const ListingCard: React.FC<ListingCardProps> = ({
   const location = getByValue(data.locationValue);
   console.log('location :', location);
 
-  const handleCancel = useCallback();
+  const handleCancel = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      if (disabled) {
+        return;
+      }
 
+      onAction?.(actionId);
+    },
+    [onAction, actionId, disabled]
+  );
+
+  
+
+  const price = useMemo(() => {
+    if (reservation) {
+      return reservation.totlaPrice;
+    }
+    return data.price;
+  }, [reservation, data.price]);
   return <div>Listing card</div>;
 };
 export default ListingCard;
