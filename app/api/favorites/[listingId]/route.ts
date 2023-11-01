@@ -37,3 +37,32 @@ export default async function POST(request: Request, { params }: { params: IPara
 	return NextResponse.json(user);
 
 }
+
+export default async function DELETE(request: Request, { params }: { params: IParams }) {
+	const currentUser = await getCurrentUser();
+
+	if (!currentUser) {
+		return NextResponse.error();
+	}
+
+	const { listingId } = params;
+
+	if (!listingId || typeof listingId !== 'string') {
+		return NextResponse.error();
+	}
+
+	let favoriteIds = [...(currentUser.favoriteIds) || []];
+
+	favoriteIds = favoriteIds.filter(id => id !== listingId);
+
+	const user = await prisma.user.update({
+		where: {
+			id: currentUser.id
+		},
+		data: {
+			favoriteIds
+		}
+	});
+
+	return NextResponse.json(user);
+}
