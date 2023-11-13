@@ -1,3 +1,5 @@
+'use client';
+
 import useCountries from '@/app/hooks/useCountry';
 import { SafeUser } from '@/app/types';
 import Image from 'next/image';
