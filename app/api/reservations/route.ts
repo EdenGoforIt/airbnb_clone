@@ -1,10 +1,12 @@
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import prisma from '@/app/libs/prismadb';
 import { NextResponse } from "next/server";
 
-export async function POST(request: Request) {
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import prisma from "@/app/libs/prismadb";
+
+export async function POST(
+	request: Request,
+) {
 	const currentUser = await getCurrentUser();
-	console.log("🚀 ~ file: route.ts:7 ~ POST ~ currentUser:", currentUser)
 
 	if (!currentUser) {
 		return NextResponse.error();
@@ -32,7 +34,7 @@ export async function POST(request: Request) {
 					userId: currentUser.id,
 					startDate,
 					endDate,
-					totalPrice
+					totalPrice,
 				}
 			}
 		}
