@@ -12,6 +12,7 @@ import axios from 'axios';
 import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Range } from 'react-date-range';
 import toast from 'react-hot-toast';
 const initialDateRange = {
   startDate: new Date(),
@@ -27,8 +28,6 @@ interface ListingClientProps {
 const ListClient: React.FC<ListingClientProps> = ({ reservations, listing, currentUser }) => {
   const loginModal = useLoginModal();
   const router = useRouter();
-  const diableDates = useMemo(() => {}, []);
-
   const category = useMemo(() => {
     return categories.find((x) => x.label === listing.category);
   }, [listing.category]);
@@ -50,7 +49,7 @@ const ListClient: React.FC<ListingClientProps> = ({ reservations, listing, curre
 
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
-  const [dateRange, setDateRange] = useState(initialDateRange);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const onCreateReservation = useCallback(() => {
     if (!currentUser) {
@@ -82,7 +81,7 @@ const ListClient: React.FC<ListingClientProps> = ({ reservations, listing, curre
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInCalendarDays(dateRange.startDate, dateRange.endDate);
+      const dayCount = differenceInCalendarDays(dateRange.endDate, dateRange.startDate);
 
       if (dayCount && listing.price) {
         setTotalPrice(dayCount * listing.price);
