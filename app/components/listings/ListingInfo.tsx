@@ -35,7 +35,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   const coordinates = getByValue(locationValue)?.latlng;
 
   return (
-    <div className="col-span-12 flex flex-col gap-4">
+    <div className="col-span-4 flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <div className="text-xl font-semibold flex flex-row items-center gap-2">
           <div>Hosted by {user?.name}</div>

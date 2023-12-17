@@ -11,3 +11,16 @@ body,
 .leaflet-bottom .leaflet-control .leaflet-top .leaflet-pane {
   z-index: 0 !important;
 }
+
+.rdrWidth{
+  width:100% !important;
+}
+
+.rdrCalendarWrapper{
+  width:100% !important;
+  font-size: 16px !important;
+}
+
+.rdrMonth{
+  width:100% !important;
+}

@@ -128,7 +128,7 @@ const ListClient: React.FC<ListingClientProps> = ({ reservations, listing, curre
                 dateRange={dateRange}
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
-                diableDates={disabledDates}
+                disabledDates={disabledDates}
               />
             </div>
           </div>
