@@ -3,28 +3,31 @@
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
-import toast from 'react-hot-toast';
-import Container from '../components/Container';
-import Heading from '../components/Heading';
-import ListingCard from '../components/listings/ListingCard';
-import { SafeReservation, SafeUser } from '../types';
+import { toast } from 'react-hot-toast';
 
-interface TripClientProps {
-  currentUser: SafeUser;
+import { SafeReservation, SafeUser } from '@/app/types';
+
+import Container from '@/app/components/Container';
+import Heading from '@/app/components/Heading';
+import ListingCard from '@/app/components/listings/ListingCard';
+
+interface TripsClientProps {
   reservations: SafeReservation[];
+  currentUser?: SafeUser | null;
 }
 
-const TripClient: React.FC<TripClientProps> = ({ currentUser, reservations }) => {
+const TripsClient: React.FC<TripsClientProps> = ({ reservations, currentUser }) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState('');
 
   const onCancel = useCallback(
     (id: string) => {
       setDeletingId(id);
+
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.success('Reservation Cancelled');
+          toast.success('Reservation cancelled');
           router.refresh();
         })
         .catch((error) => {
@@ -39,9 +42,21 @@ const TripClient: React.FC<TripClientProps> = ({ currentUser, reservations }) =>
 
   return (
     <Container>
-      <Heading title="Trip" subtitle="Where you've been and where you're going" />
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-        {reservations.map((reservation) => (
+      <Heading title="Trips" subtitle="Where you've been and where you're going" />
+      <div
+        className="
+          mt-10
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          md:grid-cols-3 
+          lg:grid-cols-4
+          xl:grid-cols-5
+          2xl:grid-cols-6
+          gap-8
+        "
+      >
+        {reservations.map((reservation: any) => (
           <ListingCard
             key={reservation.id}
             data={reservation.listing}
@@ -49,7 +64,7 @@ const TripClient: React.FC<TripClientProps> = ({ currentUser, reservations }) =>
             actionId={reservation.id}
             onAction={onCancel}
             disabled={deletingId === reservation.id}
-            actionLabel={'Cancel Reservation'}
+            actionLabel="Cancel reservation"
             currentUser={currentUser}
           />
         ))}
@@ -58,4 +73,4 @@ const TripClient: React.FC<TripClientProps> = ({ currentUser, reservations }) =>
   );
 };
 
-export default TripClient;
+export default TripsClient;
