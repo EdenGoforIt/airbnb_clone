@@ -6,7 +6,6 @@ import CategoryBox from './CategoryBox';
 import { categories } from '@/app/data-provider/categories';
 import Container from '../../Container';
 
-
 const Categories = () => {
   const params = useSearchParams();
   const category = params?.get('category');
