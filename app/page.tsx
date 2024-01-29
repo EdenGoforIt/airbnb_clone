@@ -3,11 +3,18 @@ import EmptyState from '@/app/components/EmptyState';
 import ListingCard from '@/app/components/listings/ListingCard';
 
 import getCurrentUser from '@/app/actions/getCurrentUser';
-import getListings from '@/app/actions/getListings';
+import getListings, { IListingsParams } from '@/app/actions/getListings';
 import ClientOnly from './components/ClientOnly';
 
-const Home = async () => {
-  const listings = await getListings();
+interface HomeProps {
+  searchParams: IListingsParams;
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const user = await getCurrentUser();
+  const userId = user?.id;
+  searchParams.userId = userId;
+  const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
