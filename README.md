@@ -63,3 +63,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## How to run locally in real
+
+1. Open the docker desktop
+2. Execute `docker-compose up -d`
+3. Sometimes if you're not using Mongodb, the cluster is in sleep,
+   go https://cloud.mongodb.com/v2/64482a6f6339a26c317dbdc8#/clusters and re-enable
+4. in another terminal, run `npm run dev`
